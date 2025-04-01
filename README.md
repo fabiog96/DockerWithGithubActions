@@ -8,7 +8,7 @@ This is a simple example project demonstrating how to use GitHub Actions to buil
 
 ## Project Structure
 
-- `app.sh` - A simple shell script that prints a message
+- `entrypoint.sh` - A simple shell script that prints a message
 - `Dockerfile` - Instructions for building the Docker image
 - `.github/workflows/docker-build.yml` - GitHub Actions workflow configuration
 
