@@ -1,1 +1,1 @@
-echo "Running Docker container with GitHub Actions"ù
+echo "Running Docker container with GitHub Actions"
