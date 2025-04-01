@@ -1,2 +1,2 @@
 #!/bin/sh
-echo "Hello from Docker container!"
+echo "Hello from my App. Container is running successfully.!"

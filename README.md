@@ -117,17 +117,6 @@ Hello from my-app!
 Container is running successfully.
 ```
 
-## Troubleshooting
-
-### 1. Permission Denied Errors
-Try running the command with `sudo`:
-```bash
-sudo docker run my-app:latest
-```
-
 ### 2. Cache Not Working
 If cache layers aren’t being restored, ensure the workflow has sufficient permissions and storage space.
 
-## License
-
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
