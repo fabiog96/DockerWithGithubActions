@@ -25,3 +25,4 @@ docker build -t my-app:latest .
 
 # Run the container
 docker run my-app:latest
+
