@@ -1,24 +1,18 @@
-name: Run Docker Container
-
+name: Docker Build
 on:
-  push:
-    branches:
-      - main
+    push:
+      branches:
+        - main
 
 jobs:
-  run-docker:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-    
-    - name: Set execute permissions for entrypoint
-      run: chmod +x entrypoint.sh
+      - name: Checkout code
+        uses: actions/checkout@v4
       
-    - name: Build Docker image
-      run: |
-        docker build --platform linux/amd64 -t my-docker-image .
-        
-    - name: Run Docker container
-      run: docker run --platform linux/amd64 my-docker-image
+      - name: Build Docker image
+        run: docker build -t my-app:latest .
+      
+      - name: Test the image
+        run: docker run my-app:latest
