@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-COPY app.sh /
-RUN chmod +x /app.sh
+COPY entrypoint.sh /
+RUN chmod +x /entrypoint.sh
 
-CMD ["/app.sh"]
+CMD ["/entrypoint.sh"]
