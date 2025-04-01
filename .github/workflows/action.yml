@@ -12,9 +12,13 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-
+    
+    - name: Set execute permissions for entrypoint
+      run: chmod +x entrypoint.sh
+      
     - name: Build Docker image
-      run: docker build -t my-docker-image .
-
+      run: |
+        docker build --platform linux/amd64 -t my-docker-image .
+        
     - name: Run Docker container
-      run: docker run my-docker-image
+      run: docker run --platform linux/amd64 my-docker-image
