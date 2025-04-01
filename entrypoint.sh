@@ -1,1 +1,2 @@
-echo "Running Docker container with GitHub Actions"
+#!/bin/sh
+echo "Hello from Docker container!"
