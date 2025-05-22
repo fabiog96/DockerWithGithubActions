@@ -46,6 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ needs.extract-folders.outputs.folders != '[]' && needs.extract-folders.outputs.folders != '' }}
     strategy:
+      max-parallel: 1
       matrix:
         folder: ${{ fromJson(needs.extract-folders.outputs.folders) }}
     steps:
