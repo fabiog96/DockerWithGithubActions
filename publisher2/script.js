@@ -1,1 +1,1 @@
-console.log("Publisher 2 script loaded");
+console.log("Publisher 2 script updated");
