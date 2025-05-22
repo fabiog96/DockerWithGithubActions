@@ -1,3 +1,1 @@
-c
-
-onsole.log("Publisher 2 script updated");
+console.log("Publisher 2 script updated");
