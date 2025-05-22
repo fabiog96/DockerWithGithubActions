@@ -1,0 +1,1 @@
+console.log("Publisher 1 script loaded");
