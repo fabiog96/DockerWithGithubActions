@@ -1,0 +1,1 @@
+console.log("Publisher 3 script created");
