@@ -15,11 +15,14 @@ jobs:
         contains(github.event.pull_request.body, 'devin')
       )
     runs-on: ubuntu-latest
+    outputs:
+      folders: ${{ steps.extract.outputs.folders }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Extract top-level folders from PR files
+        id: extract
         env:
           PR_NUMBER: ${{ github.event.pull_request.number }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -31,7 +34,29 @@ jobs:
           if [ -n "$files" ]; then
             echo "Top-level folders changed in PR:"
             echo "$files"
+            folders_json=$(echo "$files" | jq -R -s -c 'split("\n") | map(select(length > 0))')
+            echo "folders=$folders_json" >> $GITHUB_OUTPUT
           else
             echo "No folders found or error fetching PR files"
             exit 1
+          fi
+
+  run-script-in-folders:
+    needs: extract-folders
+    runs-on: ubuntu-latest
+    if: ${{ needs.extract-folders.outputs.folders != '[]' && needs.extract-folders.outputs.folders != '' }}
+    strategy:
+      matrix:
+        folder: ${{ fromJson(needs.extract-folders.outputs.folders) }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run script.js in folder
+        run: |
+          if [ -f "${{ matrix.folder }}/script.js" ]; then
+            echo "Running script.js in ${{ matrix.folder }}"
+            node "${{ matrix.folder }}/script.js"
+          else
+            echo "No script.js found in ${{ matrix.folder }}"
           fi
