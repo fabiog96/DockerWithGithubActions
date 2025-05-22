@@ -40,23 +40,23 @@ jobs:
             exit 1
           fi
 
-  run-script-in-folders:
-    needs: extract-folders
-    runs-on: ubuntu-latest
-    if: ${{ needs.extract-folders.outputs.folders != '[]' && needs.extract-folders.outputs.folders != '' }}
-    strategy:
-      max-parallel: 1
-      matrix:
-        folder: ${{ fromJson(needs.extract-folders.outputs.folders) }}
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+  # run-script-in-folders:
+  #   needs: extract-folders
+  #   runs-on: ubuntu-latest
+  #   if: ${{ needs.extract-folders.outputs.folders != '[]' && needs.extract-folders.outputs.folders != '' }}
+  #   strategy:
+  #     max-parallel: 1
+  #     matrix:
+  #       folder: ${{ fromJson(needs.extract-folders.outputs.folders) }}
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v4
 
-      - name: Run script.js in folder
-        run: |
-          if [ -f "${{ matrix.folder }}/script.js" ]; then
-            echo "Running script.js in ${{ matrix.folder }}"
-            node "${{ matrix.folder }}/script.js"
-          else
-            echo "No script.js found in ${{ matrix.folder }}"
-          fi
+  #     - name: Run script.js in folder
+  #       run: |
+  #         if [ -f "${{ matrix.folder }}/script.js" ]; then
+  #           echo "Running script.js in ${{ matrix.folder }}"
+  #           node "${{ matrix.folder }}/script.js"
+  #         else
+  #           echo "No script.js found in ${{ matrix.folder }}"
+  #         fi
