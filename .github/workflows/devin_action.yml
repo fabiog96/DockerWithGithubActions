@@ -1,5 +1,4 @@
-name: Extract Folders on Closed PR with "Devin"
-
+name: Test For Devin
 on:
   pull_request:
     types: [closed]
